@@ -6,8 +6,9 @@ library("RColorBrewer")
 library("grid")
 library("gridExtra")
 library("scales")
-Pt40_cfDNA <- read.delim("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/CopyNumber/Pt40_cfDNA.txt")
-chr <- do.call('c',lapply(as.character(Pt40_cfDNA[,'region']),function(x){
+#cfDNA
+Pt45_cfDNA <- read.delim("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/CopyNumber/Pt45_cfDNA.txt")
+chr <- do.call('c',lapply(as.character(Pt45_cfDNA[,'region']),function(x){
   f <- unlist(strsplit(x,'\\:'));
   return(f[1]);
 }));
@@ -33,7 +34,7 @@ theme_mine <- function(base_size = 12, base_family = "") {
       panel.grid.major.y = element_line(colour = "grey80")
     )
 }
-ggplot(Pt40_cfDNA,aes(x=seq(1,nrow(Pt40_cfDNA)),y=lr)) + theme_mine() +
+ggplot(Pt45_cfDNA,aes(x=seq(1,nrow(Pt45_cfDNA)),y=lr)) + theme_mine() +
   geom_jitter(aes(color = factor(sig))) + 
   scale_y_continuous(breaks=seq(-4,4,1),limits=c(-4,4)) + 
   scale_x_discrete(breaks=linepos,labels=seq(1,21,1)) + 
@@ -42,4 +43,4 @@ ggplot(Pt40_cfDNA,aes(x=seq(1,nrow(Pt40_cfDNA)),y=lr)) + theme_mine() +
                      guide=guide_legend(title = "", 
                                         label.theme = element_text(angle=0,size=12,face="bold"))) 
 
-ggsave("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/Figure_CNV_Pt40-cfDNA.pdf",width=20, height=5)
+ggsave("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/Figure_CNV_Pt45-cfDNA.pdf",width=20, height=5)

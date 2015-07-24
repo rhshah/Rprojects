@@ -1,3 +1,11 @@
+library('MASS');
+library("ggplot2")
+library("plyr")
+library("reshape2")
+library("RColorBrewer")
+library("grid")
+library("gridExtra")
+library("scales")
 Pt47_cfDNA <- read.delim("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/CopyNumber/Pt47_cfDNA.txt")
 chr <- do.call('c',lapply(as.character(Pt47_cfDNA[,'region']),function(x){
   f <- unlist(strsplit(x,'\\:'));
