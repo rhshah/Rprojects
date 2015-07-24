@@ -17,7 +17,7 @@ chr.counts <- table(chr);
 chr.midpt <- sapply(chr.counts,function(x){return(round(x/2,0));});
 numberpos <- chr.midpt + c(0,cumsum(chr.counts)[-length(chr.counts)]);
 linepos <- cumsum(chr.counts)[-length(chr.counts)];
-linepos<-c("549","969","1427","1688","2073","2360","2688","2819","3116","3268","3607","3979","4186","4304","4462", "4729", "5143", "5244", "5668", "5831", "5896")
+linepos<-c("480","813","1201","1410","1733","1958","2219","2290","2546","2646","2931","3253","3424","3505","3630","3872","4255","4322","4729","4866","4917")
 theme_mine <- function(base_size = 12, base_family = "") {
   # Starts with theme_grey and then modify some parts
   theme_bw(base_size = base_size, base_family = base_family) %+replace%
@@ -29,18 +29,20 @@ theme_mine <- function(base_size = 12, base_family = "") {
       axis.title.x =  element_blank(),
       axis.title.y = element_blank(),
       legend.position = "top",
-      legend.direction="horizontal"
+      legend.direction="horizontal",
+      panel.grid.major.x = element_line(colour = "grey80", linetype = "dotted"),
+      panel.grid.major.y = element_line(colour = "grey80")
     )
 }
 ggplot(Pt07_cellpellet,aes(x=seq(1,nrow(Pt07_cellpellet)),y=lr)) + theme_mine() +
   geom_jitter(aes(color = factor(sig))) + 
-  scale_y_continuous(limits=c(-4,4)) + 
+  scale_y_continuous(breaks=seq(-4,4,1),limits=c(-4,4)) + 
   scale_x_discrete(breaks=linepos,labels=seq(1,21,1)) + 
   scale_color_manual(values=c("#0072B2","#D55E00"),
                      labels=c("Insignificant","Significant"),
                      guide=guide_legend(title = "", 
                                         label.theme = element_text(angle=0,size=12,face="bold"))) 
-ggsave("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/Figure_CNV_Pt19-cellpellet.pdf",width=20, height=10)
+ggsave("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/Figure_CNV_Pt07-cellpellet.pdf",width=20, height=5)
 #cfDNA
 Pt07_cfDNA <- read.delim("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/CopyNumber/Pt07_cfDNA.txt")
 chr <- do.call('c',lapply(as.character(Pt07_cfDNA[,'region']),function(x){
@@ -52,7 +54,7 @@ chr.counts <- table(chr);
 chr.midpt <- sapply(chr.counts,function(x){return(round(x/2,0));});
 numberpos <- chr.midpt + c(0,cumsum(chr.counts)[-length(chr.counts)]);
 linepos <- cumsum(chr.counts)[-length(chr.counts)];
-linepos<-c("549","969","1427","1688","2073","2360","2688","2819","3116","3268","3607","3979","4186","4304","4462", "4729", "5143", "5244", "5668", "5831", "5896")
+linepos<-c("480","813","1201","1410","1733","1958","2219","2290","2546","2646","2931","3253","3424","3505","3630","3872","4255","4322","4729","4866","4917")
 theme_mine <- function(base_size = 12, base_family = "") {
   # Starts with theme_grey and then modify some parts
   theme_bw(base_size = base_size, base_family = base_family) %+replace%
@@ -64,16 +66,18 @@ theme_mine <- function(base_size = 12, base_family = "") {
       axis.title.x =  element_blank(),
       axis.title.y = element_blank(),
       legend.position = "top",
-      legend.direction="horizontal"
+      legend.direction="horizontal",
+      panel.grid.major.x = element_line(colour = "grey80", linetype = "dotted"),
+      panel.grid.major.y = element_line(colour = "grey80")
     )
 }
 ggplot(Pt07_cfDNA,aes(x=seq(1,nrow(Pt07_cfDNA)),y=lr)) + theme_mine() +
   geom_jitter(aes(color = factor(sig))) + 
-  scale_y_continuous(limits=c(-4,4)) + 
+  scale_y_continuous(breaks=seq(-4,4,1),limits=c(-4,4)) + 
   scale_x_discrete(breaks=linepos,labels=seq(1,21,1)) + 
   scale_color_manual(values=c("#0072B2","#D55E00"),
                      labels=c("Insignificant","Significant"),
                      guide=guide_legend(title = "", 
                                         label.theme = element_text(angle=0,size=12,face="bold"))) 
 
-ggsave("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/Figure_CNV_Pt07-cfDNA.pdf",width=20, height=10)
+ggsave("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/Figure_CNV_Pt07-cfDNA.pdf",width=20, height=5)
