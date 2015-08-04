@@ -6,10 +6,11 @@ library("grid")
 library("gridExtra")
 library("scales")
 cbPalette <- c("#E69F00", "#0072B2")
+grayscale <- c("#636363","#bdbdbd")
 Figure1_a <- read.delim("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/Figure1_a.txt")
 datm <- melt(Figure1_a)
 p = ggplot(datm,aes(factor(variable),value,fill=variable)) + geom_bar(stat="identity") + facet_wrap(~MutationType,scales="free_x",ncol=4,nrow=1)
-p+ylab("Variant Allele Frequency (VAF)")+
+p+ylab("Variant Allele Frequency (VAF)")+xlab("")+
   scale_fill_manual(values=cbPalette,guide = guide_legend(title="CSF-components: ",title.theme = element_text(angle=0,size=18,face="bold"),label.theme = element_text(angle=0,size=18,face="bold"))) + 
   theme_mine()
 ggsave("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/Figure1_a.pdf",width=12, height=6)

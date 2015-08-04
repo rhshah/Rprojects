@@ -36,7 +36,7 @@ theme_mine <- function(base_size = 12, base_family = "") {
 }
 ggplot(Pt32_cfDNA,aes(x=seq(1,nrow(Pt32_cfDNA)),y=lr)) + theme_mine() +
   geom_jitter(aes(color = factor(sig))) + 
-  ylab("LOG2 Tumor/Normal Ratio") +
+  ylab("LOG2 Ratio") +
   scale_y_continuous(breaks=seq(-4,4,1),limits=c(-4,4)) + 
   scale_x_discrete(breaks=linepos,labels=seq(1,21,1)) + 
   geom_hline(yintercept=0, linetype="dashed") +
@@ -76,7 +76,7 @@ theme_mine <- function(base_size = 12, base_family = "") {
 }
 ggplot(Pt32_FFPE,aes(x=seq(1,nrow(Pt32_FFPE)),y=lr)) + theme_mine() +
   geom_jitter(aes(color = factor(sig))) + 
-  ylab("LOG2 Tumor/Normal Ratio") +
+  ylab("LOG2 Ratio") +
   scale_y_continuous(breaks=seq(-4,4,1),limits=c(-4,4)) + 
   scale_x_discrete(breaks=linepos,labels=seq(1,21,1)) + 
   geom_hline(yintercept=0, linetype="dashed") +

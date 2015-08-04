@@ -5,9 +5,10 @@ library("RColorBrewer")
 library("grid")
 library("gridExtra")
 library("scales")
-Figure3_heatmap <- read.delim("/Users/shahr2/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/HeatmapFiles/Pt32_35394009.txt")
+Figure3_heatmap <- read.delim("/Users/shahr2/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/HeatmapFiles/Pt27_35104659.txt")
 datm=melt(Figure3_heatmap)
 datm$Gene.AminoAcid = factor(datm$Gene.AminoAcid,levels=Figure3_heatmap$Gene.AminoAcid)
+datm$variable = factor(datm$variable,levels=c("FFPE","cfDNA"))
 base_size <- 9
 p <- ggplot(datm,aes(x=factor(Gene.AminoAcid), y=variable))
 p + geom_tile(aes(fill=value)) + geom_tile(aes(fill=value),colour = "black",show_guide=FALSE) + 
@@ -20,10 +21,10 @@ p + geom_tile(aes(fill=value)) + geom_tile(aes(fill=value),colour = "black",show
   xlab("") + ylab("") +
   coord_equal() +
   scale_x_discrete(expand = c(0, 0)) +
-  scale_y_discrete(expand = c(0, 0)) +
+  scale_y_discrete(limit=(rev(levels(datm$variable))),expand = c(0, 0)) +
   theme_mine() 
  #theme(legend.position = "none",axis.ticks = element_blank(), axis.text.x = element_text(size = base_size * 0.8, angle = 330, hjust = 0, colour = "grey50"))
-ggsave("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/Figure3_Pt32.pdf",width=25, height=10)
+ggsave("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/Figure3_Pt27.pdf",width=25, height=10)
 
 theme_mine <- function(base_size = 12, base_family = "") {
   # Starts with theme_grey and then modify some parts

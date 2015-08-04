@@ -7,8 +7,8 @@ library("grid")
 library("gridExtra")
 library("scales")
 #cfDNA
-Pt09_cfDNA <- read.delim("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/CopyNumber/Pt09_cfDNA.txt")
-chr <- do.call('c',lapply(as.character(Pt09_cfDNA[,'region']),function(x){
+Pt12_cfDNA <- read.delim("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/CopyNumber/Pt12_cfDNA.txt")
+chr <- do.call('c',lapply(as.character(Pt12_cfDNA[,'region']),function(x){
   f <- unlist(strsplit(x,'\\:'));
   return(f[1]);
 }));
@@ -34,7 +34,7 @@ theme_mine <- function(base_size = 12, base_family = "") {
       panel.grid.major.y = element_line(colour = "grey80")
     )
 }
-ggplot(Pt09_cfDNA,aes(x=seq(1,nrow(Pt09_cfDNA)),y=lr)) + theme_mine() +
+ggplot(Pt12_cfDNA,aes(x=seq(1,nrow(Pt12_cfDNA)),y=lr)) + theme_mine() +
   geom_jitter(aes(color = factor(sig))) + 
   ylab("LOG2 Tumor/Normal Ratio") +
   scale_y_continuous(breaks=seq(-4,4,1),limits=c(-4,4)) + 
@@ -45,10 +45,10 @@ ggplot(Pt09_cfDNA,aes(x=seq(1,nrow(Pt09_cfDNA)),y=lr)) + theme_mine() +
                      guide=guide_legend(title = "", 
                                         label.theme = element_text(angle=0,size=18,face="bold"))) 
 
-ggsave("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/Figure_CNV_Pt09-cfDNA.pdf",width=20, height=5)
+ggsave("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/Figure_CNV_Pt12-cfDNA.pdf",width=20, height=5)
 #FFPE
-Pt09_FFPE <- read.delim("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/CopyNumber/Pt09_FFPE.txt")
-chr <- do.call('c',lapply(as.character(Pt09_FFPE[,'region']),function(x){
+Pt12_FFPE <- read.delim("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/CopyNumber/Pt12_FFPE.txt")
+chr <- do.call('c',lapply(as.character(Pt12_FFPE[,'region']),function(x){
   f <- unlist(strsplit(x,'\\:'));
   return(f[1]);
 }));
@@ -74,7 +74,7 @@ theme_mine <- function(base_size = 12, base_family = "") {
       panel.grid.major.y = element_line(colour = "grey80")
     )
 }
-ggplot(Pt09_FFPE,aes(x=seq(1,nrow(Pt09_FFPE)),y=lr)) + theme_mine() +
+ggplot(Pt12_FFPE,aes(x=seq(1,nrow(Pt12_FFPE)),y=lr)) + theme_mine() +
   geom_jitter(aes(color = factor(sig))) + 
   ylab("LOG2 Tumor/Normal Ratio") +
   scale_y_continuous(breaks=seq(-4,4,1),limits=c(-4,4)) + 
@@ -85,4 +85,4 @@ ggplot(Pt09_FFPE,aes(x=seq(1,nrow(Pt09_FFPE)),y=lr)) + theme_mine() +
                      guide=guide_legend(title = "", 
                                         label.theme = element_text(angle=0,size=18,face="bold"))) 
 
-ggsave("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/Figure_CNV_Pt09-FFPE.pdf",width=20, height=5)
+ggsave("~/Documents/MSKCC/CMO/CSF_Analysis/Analysis_Plots/Figure_CNV_Pt12-FFPE.pdf",width=20, height=5)
